@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% if members %}
+	{% for m in members %}
+	{{	m.character.name }} <br>
+	{% endfor %}
+{% else %}
+There are no members in the guild yet.
+{% endif %}
+
+{% endblock %}

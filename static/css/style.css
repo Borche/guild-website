@@ -1,6 +1,6 @@
 
 body {
-	background: #111;
+	background: #eee;
 	margin: 50px 0px; 
 	padding: 0px;
 	font-size:15px;
@@ -63,4 +63,9 @@ div {
 
 a {
 	color: #FFFFCC;
+}
+
+.right {
+	margin: 5px 0 5px 0;
+	float:right;
 }

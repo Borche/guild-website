@@ -4,8 +4,11 @@ Created on 24 mar 2014
 @author: Andreas
 '''
 
-GUILD_NAME = 'Deorum'
+GUILD_NAME = 'Vrede'
 TITLE = 'Deorum Guild'
+REALM = 'Frostmane'
+
+
 
 ''' Include the variables that should be available to all templates '''
 def guild_info(request):

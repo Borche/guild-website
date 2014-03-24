@@ -1,4 +1,4 @@
-from django.shortcuts import render
+
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -20,3 +20,9 @@ def comments(request, t_id):
     all_comments = Comment.objects.filter(thread_id=t_id).order_by('number')
     response = {'t_id': t_id, 'comments': all_comments}
     return render(request, 'forum/comments.html', response)
+
+def new_comment(request, t_id):
+    print t_id
+    response = { 't_id': t_id }
+    return render(request, 'forum/new_comment.html', response)
+        

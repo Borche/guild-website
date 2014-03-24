@@ -19,5 +19,6 @@
 {% else %}
 <p>No comments exist yet in this thread (which is weird).</p>
 {% endif %}
+<a href="{% url 'forum:new_comment' t_id %}" type="button" class="btn btn-default btn-sm right">New comment</a>
 
 {% endblock %}
