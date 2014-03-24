@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if comments %}
+	{% for c in comments %}
+	<div id="comment-wrapper">
+		<div id="div-avatar">
+		<span style="font-weight:bold;">{{ c.user|title }}</span>
+		<span style="font-size:12px;">[{{ c.number }}]</span>
+		<br /><span style="font-size:11px;font-style:italic;">{{ c.datetime|date:"Y-m-d H:i" }}</span>
+		</div>
+		<div id="div-comment">
+		{{ c.text|linebreaksbr }}</li>
+		</div>
+	</div>
+	{% endfor %}
+{% else %}
+<p>No comments exist yet in this thread (which is weird).</p>
+{% endif %}
+
+{% endblock %}

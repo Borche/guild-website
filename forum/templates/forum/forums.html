@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Guild forums {% endblock %}
+
+{% block content %}
+{% if forums %}
+<ul>
+	{% for f in forums %}
+	<li><a href="{% url 'forum:threads' f.id %}">Forum {{ f.id }}: {{ f.name }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>No forums exist yet.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if threads %}
+<ul>
+	{% for t in threads %}
+	<li><a href="{% url 'forum:comments' t.id %}">Thread {{ t.id }}: {{ t.headline }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>No threads exist in this forum yet.</p>
+{% endif %}
+
+{% endblock %}

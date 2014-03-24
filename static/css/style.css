@@ -1,0 +1,62 @@
+
+body {
+	background: #111;
+	margin: 50px 0px; 
+	padding: 0px;
+	font-size:15px;
+	font-family:calibri;
+	color:#ddd;
+}
+
+#wrapper {
+	margin: 0px auto;
+	padding: 10px 0px;
+	width: 760px;
+	background: #333;
+	overflow:auto;
+	box-shadow: 0px 3px 3px #000;
+}
+
+div {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#content {
+	width:740px;
+	margin: 0px auto;
+}
+
+#comment-wrapper {
+	width:740px;
+	/* box-shadow: 0px 3px 10px #444; */
+	border-bottom: 1px solid #666;
+	overflow:auto;
+}
+
+#div-avatar {
+	min-height:125px;
+	width: 140px;
+	background: #222;
+	border-right: 1px solid #666;
+	float:left;
+	padding:8px
+}
+
+#div-comment {
+	float:right;
+	padding:10px 15px 10px 15px;
+	width:600px;
+	min-height:125px;
+	background: #0B243B;
+	background: linear-gradient(#084B8A, #0B243B); /* For Safari */
+	background: -o-linear-gradient(#084B8A, #0B243B); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#084B8A, #0B243B); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#0B243B, #0B3861); /* Standard syntax (must be last) */
+}
+
+#footer {
+	/* height:100px; */
+	text-align: center;
+}

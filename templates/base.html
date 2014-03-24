@@ -1,0 +1,23 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>{% block title %} Guild site {% endblock %}</title>
+		
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	</head>
+	<body>
+	<div id="wrapper">
+		<div id="header">
+		</div>
+		<div id="content">
+		{% block content %}BLOCK CONTENT{% endblock %}
+		</div>
+		<div id="footer">
+		</div>
+	</div>
+	</html>
+</html>
