@@ -1,5 +1,5 @@
 """
-Django settings for guild project.
+Django settings for myproject project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '72e1-i9z*k)=!b5jp^p0t7ikpb2*@0@^pc%s0snti^y9fwf!t_'
+SECRET_KEY = '$9c0=fyt44y=s5b9xw_p)7227wd52@ql6t)3el3&80i$4+&q3e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -26,19 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'guild',
-        'USER': 'borche',
-        'PASSWORD': 'huja123',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
 
 # Application definition
 
@@ -49,8 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'forum',
-    'roster',
+	'forum',
+	'roster',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,16 +53,18 @@ ROOT_URLCONF = 'guild.urls'
 
 WSGI_APPLICATION = 'guild.wsgi.application'
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
-"django.core.context_processors.debug",
-"django.core.context_processors.i18n",
-"django.core.context_processors.media",
-"django.core.context_processors.static",
-"django.core.context_processors.tz",
-"django.contrib.messages.context_processors.messages",
-"guild.misc.guild_info")
+# Database
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'deorum_db',
+		'USER': 'deorum',
+		'PASSWORD': 'ruskabusk3',
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -94,8 +83,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-# static files for whole project
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# app specific static files
+# app specific
 STATIC_URL = '/static/'
+
+#STATIC_ROOT = '/home/deorum/webapps/deorum_static'
+
+
+
+# When going live, use "if not DEBUG:"
+if DEBUG:
+	MEDIA_URL = '/media/'
+	#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static-only")
+	STATIC_ROOT = '/home/deorum/webapps/deorum_static'
+	MEDIA_ROOT = '/home/deorum/webapps/deorum_static/media'
+	STATICFILES_DIRS = (
+		'/home/deorum/webapps/deorum_static/static',
+	)
+
+	# Template location
+	TEMPLATE_DIRS = (
+		'/home/deorum/webapps/deorum_static/templates',
+	)
