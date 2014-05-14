@@ -3,6 +3,20 @@
 
 {% block content %}
 
-News!
+{% if articles %}
+
+{% for a in articles %}
+	<p>
+	<span style="font-weight:bold">{{ a.author }}</span> - <span style="font-size:12px;">{{ a.pub_date }} </span>
+	</p>
+	<p>
+	{{ a.text|linebreaksbr }}
+	</p>
+{% endfor %}
+
+{% else %}
+No articles yet!
+
+{% endif %}
 
 {% endblock %}

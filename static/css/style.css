@@ -13,12 +13,12 @@ body {
 	padding: 0px;
 	width: 780px;
 	overflow:auto;
-	box-shadow: 0px 3px 3px #000;
+	box-shadow: 0px 5px 6px #000;
 }
 
 #wrapper {
 	/* border: 1px solid red; */
-	background:#1b1b1b;
+	background:#111;
 	padding: 20px;
 	min-height: 100px;
 }
@@ -37,6 +37,59 @@ div {
 #menu-1 {
 	height:22px;
 	background: #1b1b1b url('../imgs/menu-1.png');
+	border-bottom: 1px solid #222;
+}
+
+#menu-1 ul {
+	width: 93%;
+	text-align: center;
+}
+
+#menu-1 li {	
+	/* background: url('../imgs/deorum_li.png'); */
+	width: 100px;
+	display: inline-block;
+	font-weight: bold;
+	font-family: Times New Roman, Arial;
+}
+
+#menu-1 ul li:hover {
+	
+}
+
+#menu-1 ul li ul {
+	padding: 0;
+	position: absolute;
+	margin-left: -20px;
+	visibility: hidden;
+	width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: 0px 1px 5px #444;
+  display: none;
+  opacity: 0;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+
+#menu-1 ul li ul li { 
+  background: #111; 
+  width: 150px;
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #111;
+}
+#menu-1 ul li ul li:hover { 
+	background: #111; 
+}
+
+#menu-1 ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 #content {
@@ -79,8 +132,13 @@ div {
 	text-align: center;
 }
 
-a {
-	color: #FFFFCC;
+a, a:visited, a:active {
+	color: #fff;
+}
+
+a:hover {
+	color: #b8e7ff;
+	text-decoration: none;
 }
 
 .right {
