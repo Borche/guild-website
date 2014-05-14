@@ -19,13 +19,19 @@
 		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 	</head>
 	<body>
-	<div id="wrapper">
+	<div id="center">
 		<div id="header">
+			
 		</div>
-		<div id="content">
-		{% block content %}BLOCK CONTENT{% endblock %}
+		<div id="menu-1">
 		</div>
-		<div id="footer">
+		<div id="wrapper">
+			<div id="content">
+			{% block content %}BLOCK CONTENT{% endblock %}
+			</div>
+			<div id="footer">
+				&copy Deorum Guild 2014
+			</div>
 		</div>
 	</div>
 	</html>
