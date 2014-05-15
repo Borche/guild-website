@@ -7,25 +7,57 @@
     <head>
         <title>{% block title %} {{ TITLE }} {% endblock %}</title>
 		
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-		
 		<!-- jQuery, jQuery UI -->
 		<script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 		<script src="{% static 'js/jquery-ui-1.10.4.custom.min.js' %}"></script>
 		
 		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.4.custom.min.css' %}" />
+		
+		<!-- Latest compiled and minified CSS -->
+		<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+
+		<!-- Optional theme -->
+		<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
+
+		<!-- Latest compiled and minified JavaScript -->
+		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+		
+
+		
+		<script>
+			$(document).ready (function() {
+				$('body').on('click', 'a#login_button', function(e) {
+                    $('#login_div').dialog({
+                        show: {
+                            effect: "fade",
+                            duration: 500
+                        },
+                        hide: {
+                            effect: "fade",
+                            duration: 250
+                        },
+                        buttons: { 
+                            Login: function() { $('#login_form').submit(); $(this).dialog('close'); }, 
+                            Cancel: function() { $(this).dialog('close'); } 
+                        }, 
+                        position: [e.pageX-150, e.pageY]
+                    }); 
+                });
+			});
+		</script>
+		
 	</head>
 	<body>
 	<div id="center">
-		<div id="header">
+		<!-- Login / Logout links -->
+		{% if user.is_authenticated %}
+		<span style="margin:0;padding:0;float:right;"><span style="font-style:italic;font-size:11px;">Logged in as {{ user|title }} </span><a href="{% url 'my_logout' %}" id="logout_button">Logout</a></span>
+		{% else %}
+		<a href="#" id="login_button" style="margin:0;padding:0;float:right;">Login</a>
+		{% endif %}
+		
+		<div id="header" style="clear:both">
 			
 		</div>
 		<div id="menu-1">
@@ -53,5 +85,16 @@
 			</div>
 		</div>
 	</div>
-	</html>
+	
+	<div id="login_div" title="Login" hidden="true">
+            <form id="login_form" action="{% url 'my_login' %}" method="post">
+                {% csrf_token %}
+                <table>
+                    <tr><td>Username:</td><td><input id="id_username" name="username" type="text" max_length="30"></td></tr>
+                    <tr><td>Password:</td><td><input id="id_password" name="password" type="password" max_length="30"></td></tr>
+                </table>
+            </form>
+        </div>
+	
+	</body>
 </html>
