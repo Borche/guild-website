@@ -14,12 +14,46 @@ Applications
 
 {% if applications %}
 
-{% for a in applications %}
-<p>{{ a.header }}</p>
-{% endfor %}
+<div id="applications">
+    {% for a in applications %}
+    <h3><span class="bold">{{ a.character_name }}</span> {{ a.level }} {{ a.race }} <span class="{{ a.xclass|lower|cut:" " }}">{{ a.xclass }}</span> - <span style="font-size:10px;font-style:italic;">{{ a.date }}</span></h3>
+    <div>
+		<h5>Contact info</h5>
+		<table class="bold">
+            <!--<tr><td></td><td></td></tr>-->
+            <tr><td>Name:</td><td>{% if not user.is_authenticated %}<span style="font-style:italic;font-weight:normal;">&ltLogin required.&gt</span>{%else%}{{ a.name }}{% endif %}</td></tr>
+            <tr><td>E-mail:</td><td>{% if not user.is_authenticated %}<span style="font-style:italic;font-weight:normal;">&ltLogin required.&gt</span>{%else%}{{ a.email }}{% endif %}</td></tr>
+			<tr><td>Age:</td><td>{{ a.age }}</td></tr>
+        </table>
+		<h5>Character info:</h5>
+        <table class="bold">
+            <!--<tr><td></td><td></td></tr>-->
+            <tr><td>Character name:</td><td>{{ a.character_name }}</td></tr>
+            <tr><td>Class:</td><td>{{ a.xclass }}</td></tr>
+			<tr><td>Race:</td><td>{{ a.race }}</td></tr>
+            <tr><td>Level:</td><td>{{ a.level }}</td></tr>
+            <tr><td>Item level:</td><td>{{ a.item_level }}</td></tr>
+        </table>
+		<h5>Message:</h5>
+        <p>{{ a.message|linebreaks }}</p>
+    </div>
+    {% endfor %}
+</div>
 
 {% else %}
 <p>Currently no applications to be displayed</p>
 {% endif %}
 
+<script>
+    $(document).ready( function() {
+        $('#applications').accordion( {
+            header: 'h3',
+            active: false,
+            collapsible: true,
+            heightStyle: 'content',
+        });
+    });
+</script>
+
 {% endblock %}
+

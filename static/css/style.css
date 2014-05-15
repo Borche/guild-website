@@ -3,8 +3,8 @@ body {
 	background: #eee url('../imgs/simple_dashed.png');
 	margin: 50px 0px; 
 	padding: 0px;
-	font-size:15px;
-	font-family: calibri, arial, serif;
+	font-size:13px;
+	font-family: arial, calibri, serif;
 	color:#c8cfdb;
 }
 
@@ -167,3 +167,60 @@ hr {
 	border: 0;
 	border-top: 1px solid #222;
 }
+
+.bold {
+    font-weight: bold;
+}
+
+#applications td {
+	width: 150px;
+}
+
+/* CLASS COLORS */
+
+.warrior {
+    color:#C79C6E;
+}
+
+.rogue {
+    color: #FFF569;
+}
+
+.mage {
+    color: #69CCF0;
+}
+
+.hunter {
+    color: #ABD473;
+}
+
+.priest {
+    color: #ffffff;
+}
+
+.paladin {
+    color: #F58CBA;
+}
+
+.druid {
+    color: #FF7D0A;
+}
+
+.monk {
+    color: #00FF96;
+}
+
+.shaman {
+    color: #0070DE;
+}
+
+.warlock {
+    color: #9482C9;
+}
+
+.deathknight {
+    color: #C41F3B;
+}
+
+
+

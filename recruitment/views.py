@@ -30,9 +30,13 @@ def process_application(request):
 	return render(request, 'recruitment/apply.html', { 'application_form': af })
 	
 def applications(request):
-    applications_list = Application.objects.all().order_by('-date')
-    template = loader.get_template('recruitment/applications.html')
-    context = RequestContext(request, {
-        'applications': applications_list,
-        })
-    return HttpResponse(template.render(context))
+	applications_list = Application.objects.all().order_by('-date')
+	if not request.user.is_authenticated():
+		for a in applications_list:
+			a.name = 'Login required'
+			a.email = 'Login required'
+	template = loader.get_template('recruitment/applications.html')
+	context = RequestContext(request, {
+		'applications': applications_list,
+	})
+	return HttpResponse(template.render(context))

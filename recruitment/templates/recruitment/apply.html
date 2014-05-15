@@ -18,7 +18,14 @@ Application form
 
 <script>
     $(document).ready( function() {
+		$('#application_form').attr("autocomplete", "off");
+	
         $('input[type=submit]').addClass("btn btn-default btn-sm");
+		
+		$('#id_character_name').parent().parent().before('<h4>Character info</h4>');
+		$('#id_email').parent().parent().before('<h4>Contact info</h4>');
+		$('#id_name').attr("title", "First name is enough.");
+		//$('#id_message').parent().parent().after('<h4>Bot check</h4>');
     });
 </script>
 

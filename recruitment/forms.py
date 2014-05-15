@@ -38,12 +38,13 @@ class ApplicationForm(ModelForm):
 	sorted_races = sorted(races, key=lambda tup: tup[0])
 	xclass = ChoiceField(choices=sorted_classes, label='Class')
 	race = ChoiceField(choices=sorted_races)
-	level = IntegerField(min_value=1, max_value=90)
-	item_level = IntegerField(min_value=1, max_value=600)
+	level = IntegerField(min_value=1, max_value=100)
+	item_level = IntegerField(min_value=1, max_value=800)
+	age = IntegerField(min_value=18, max_value=100)
 	captcha = CaptchaField()
 	class Meta:
 		model = Application
-		fields = ['character_name', 'email', 'race', 'xclass', 
+		fields = ['email', 'name', 'age', 'character_name', 'race', 'xclass', 
 			'level', 'item_level', 'message']
 		exclude = ['header', 'date']      
 
