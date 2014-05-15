@@ -1,0 +1,25 @@
+﻿
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>
+Applications
+</h3>
+
+<!-- Här hamnar man om man precis applyat -->
+{% if new %}
+<p>Thanks for your application!</p>
+{% endif %}
+
+{% if applications %}
+
+{% for a in applications %}
+<p>{{ a.header }}</p>
+{% endfor %}
+
+{% else %}
+<p>Currently no applications to be displayed</p>
+{% endif %}
+
+{% endblock %}

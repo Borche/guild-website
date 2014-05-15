@@ -95,6 +95,7 @@ div {
 #content {
 	width:720px;
 	margin: 0px auto;
+	min-height: 260px;
 }
 
 #comment-wrapper {
@@ -144,4 +145,20 @@ a:hover {
 .right {
 	margin: 5px 0 5px 0;
 	float:right;
+}
+
+ul {
+	list-style-type: none;
+}
+
+input, select, textarea {
+	margin: 2px 10px 2px 10px;
+	color: black;
+	min-width: 70px;
+}
+
+hr {
+	display: block;
+	border: 0;
+	border-top: 1px solid #222;
 }

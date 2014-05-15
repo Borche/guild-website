@@ -29,11 +29,11 @@
 				<li><a href="#">About Deorum</a></li>
 				<li><a href="#">Member info</a></li>
 				<li>
-					<a href="#">Recruitment</a>
+					<a href="{% url 'recruitment:status' %}">Recruitment</a>
 					<ul>
-						<li><a href="#">Recruitment status</a></li>
-						<li><a href="#">Apply now</a></li>
-						<li><a href="#">Pending applications</a></li>
+						<li><a href="{% url 'recruitment:status' %}">Status</a></li>
+						<li><a href="{% url 'recruitment:apply' %}">Apply Now</a></li>
+						<li><a href="{% url 'recruitment:applications' %}">Applications</a></li>
 					</ul>
 				</li>
 			</ul>

@@ -52,6 +52,8 @@ INSTALLED_APPS = (
     'forum',
     'roster',
 	'news',
+	'recruitment',
+	'captcha',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>
+Application form
+</h3>
+<hr>
+
+<form action="{% url 'recruitment:process_application' %}" method="post" id="application_form">
+    {% csrf_token %}
+    <table style="text-align:left;">
+        {{ application_form.as_table }}
+        <tr><td colspan="2" align="center"><input align="center" type="submit" value="Apply!"></td></tr>
+	</table>
+</form>
+<hr>
+
+<script>
+    $(document).ready( function() {
+        $('input[type=submit]').button();
+
+        
+    });
+</script>
+
+{% endblock %}

@@ -10,5 +10,7 @@ urlpatterns = patterns('',
     url(r'^forum/', include('forum.urls', namespace="forum")),
     url(r'^roster/', include('roster.urls', namespace="roster")),
 	url(r'^news/', include('news.urls', namespace="news")),
+	url(r'^recruitment/', include('recruitment.urls', namespace="recruitment")),
+	url(r'^captcha/', include('captcha.urls')), 
     url(r'^admin/', include(admin.site.urls)),
 )
