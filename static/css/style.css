@@ -1,11 +1,11 @@
 
 body {
-	background: #eee url('../imgs/binding_dark.png');
+	background: #eee url('../imgs/simple_dashed.png');
 	margin: 50px 0px; 
 	padding: 0px;
 	font-size:15px;
-	font-family:calibri, serif;
-	color:#ccc;
+	font-family: calibri, arial, serif;
+	color:#c8cfdb;
 }
 
 #center {
@@ -18,7 +18,7 @@ body {
 
 #wrapper {
 	/* border: 1px solid red; */
-	background:#111;
+	background:#171a21;
 	padding: 20px;
 	min-height: 100px;
 }
@@ -41,16 +41,16 @@ div {
 }
 
 #menu-1 ul {
-	width: 93%;
+	width: 90%;
 	text-align: center;
 }
 
 #menu-1 li {	
 	/* background: url('../imgs/deorum_li.png'); */
-	width: 100px;
+	width: 130px;
 	display: inline-block;
 	font-weight: bold;
-	font-family: Times New Roman, Arial;
+	font-family: monospace, Times New Roman, Arial;
 }
 
 #menu-1 ul li:hover {
@@ -60,7 +60,7 @@ div {
 #menu-1 ul li ul {
 	padding: 0;
 	position: absolute;
-	margin-left: -20px;
+	margin-left: -10px;
 	visibility: hidden;
 	width: 150px;
   -webkit-box-shadow: none;
@@ -128,7 +128,7 @@ div {
 
 #footer {
 	margin-top:40px;
-	height:20px;
+	height:30px;
 	font-size:12px;
 	text-align: center;
 }
@@ -154,7 +154,12 @@ ul {
 input, select, textarea {
 	margin: 2px 10px 2px 10px;
 	color: black;
-	min-width: 70px;
+	min-width: 110px;
+}
+
+textarea {
+	width: 500px;
+	resize: none;
 }
 
 hr {
