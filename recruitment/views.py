@@ -20,6 +20,7 @@ def apply(request):
 	
 def process_application(request):
 	if request.method == 'POST':
+		print request.META['REMOTE_ADDR']
 		af = ApplicationForm(request.POST)
 		if af.is_valid():
 			a = af.save(commit=False)

@@ -8,12 +8,16 @@
 {% if articles %}
 
 {% for a in articles %}
+	<hr>
 	<p>
-	<span style="font-weight:bold">{{ a.author }}</span> - <span style="font-size:12px;">{{ a.pub_date }} </span>
+	<span style="font-size:20px;">{{ a.header }} - </span> <span style="font-weight:bold">{{ a.author }}</span> - <span style="font-size:12px;">{{ a.pub_date }} </span>
 	</p>
 	<p>
 	{{ a.text|linebreaksbr }}
 	</p>
+	{% if a.image %}
+	<img src="{{ MEDIA_URL }}{{ a.image }}" width="100%"></img>
+	{% endif %}
 {% endfor %}
 
 {% else %}
