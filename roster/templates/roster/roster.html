@@ -16,7 +16,7 @@
 			<td><a href="{% url 'roster:roster' 'rank' ord %}">Rank</a></td>
 		</tr>
 	{% for m in members %}
-		<tr><td class="bold">{{ m.name }}</td><td>{{ m.xclass }}</td><td>{{ m.race }}</td><td>{{ m.level }}</td><td>{{ m.rank }}</td></tr>
+		<tr><td class="bold"><a class="deo" href="http://eu.battle.net/wow/en/character/shattered-hand/{{ m.name }}/simple" target="_blank">{{ m.name }}</a></td><td>{{ m.xclass }}</td><td>{{ m.race }}</td><td>{{ m.level }}</td><td>{{ m.rank }}</td></tr>
 	{% endfor %}
 	</table>
 {% else %}
