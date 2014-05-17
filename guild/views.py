@@ -6,9 +6,9 @@ from news import views
 
 def my_login(request):
 	if not request.POST.get('username', False):
-		raise Http404
+		return HttpResponseRedirect(reverse('invalid_login'))
 	if not request.POST.get('password', False):
-		raise Http404
+		return HttpResponseRedirect(reverse('invalid_login'))
 		
 	username = request.POST['username']
 	password = request.POST['password']
@@ -27,3 +27,6 @@ def my_logout(request):
 	
 def about(request):
 	return render(request, 'about.html')
+	
+def invalid_login(request):
+	return render(request, 'invalid_login.html')

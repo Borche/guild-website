@@ -21,5 +21,6 @@ urlpatterns = patterns('',
 	url(r'^account/', include('account.urls', namespace='account')),
 	url(r'^login/$', views.my_login, name='my_login'),
 	url(r'^logout/$', views.my_logout, name='my_logout'),
+	url(r'^invalid/$', views.invalid_login, name='invalid_login'),
 	url(r'^about/$', views.about, name='about'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

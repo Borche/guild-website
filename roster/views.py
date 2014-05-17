@@ -3,8 +3,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from collections import OrderedDict
 
-import urllib2, json
+import urllib2, json, datetime
 from guild.misc import *
+from django.utils import timezone
+
+from roster.models import JsonData
 
 # Create your views here.
 
@@ -57,46 +60,12 @@ def extract_class(xclass):
 		return "Warrior"
 	return "Secret Class"
 
-def roster(request, attr, ord):
-	print ord
-		
-	host = "http://eu.battle.net"
-	
-	# Fetch guild members
-	url = host + "/api/wow/guild/" + REALM_URL + "/" + GUILD_NAME_URL + "?fields=members"
-	
-	#print url
-	response = urllib2.urlopen(url).read()
-	
-	guild = json.loads(response)
-	
-	members = guild['members']   
-	
-	# Fetch class info
-	url = host + "/api/wow/data/character/classes"
-	response = urllib2.urlopen(url).read()
-	classdata = json.loads(response)
-	classes = classdata['classes']
-	cl = {}
-	
-	# Construct a dictionary to be able to lookup classes
-	for c in classes:
-		cl[c['id']] = c['name']
-		
-	# Fetch race data
-	url = host + "/api/wow/data/character/races"
-	response = urllib2.urlopen(url).read()
-	racedata = json.loads(response)
-	races = racedata['races']
-	rl = {}
-	
-	for r in races:
-		rl[r['id']] = r['name']
-		
-	# Fetch rank data
+def roster(request, attr, ord):		
+	members = get_member_data()
+	cl = get_class_data()
+	rl = get_race_data()
 	
 	list = []
-	
 	for m in members:
 		char = m['character']
 		mem = Member()
@@ -115,3 +84,106 @@ def roster(request, attr, ord):
 		list.sort(key=lambda x: getattr(x, attr), reverse=True)
     
 	return render(request, 'roster/roster.html', {'members': list, 'ord': ord })
+	
+def get_race_data():
+	host = "http://eu.battle.net"
+	
+	try:
+		races = JsonData.objects.get(description='races')
+	except JsonData.DoesNotExist:
+		races = None
+	
+	if races is None or races.date <= timezone.now() - datetime.timedelta(hours=12):
+		print "Updating races in DB"	
+		
+		# Fetch class info from blizzard
+		url = host + "/api/wow/data/character/races"
+		response = urllib2.urlopen(url).read()
+		
+		try:
+			old = JsonData.objects.get(description='races')
+			old.delete()
+		except JsonData.DoesNotExist:
+			pass
+		jsonData = JsonData(description='races', json=response)
+		jsonData.save()			
+	else:
+		print "Using races classes from DB"
+		response = races.json
+	
+	racedata = json.loads(response)
+	races = racedata['races']
+	rl = {}
+	
+	# Construct a dictionary to be able to lookup classes
+	for r in races:
+		rl[r['id']] = r['name']
+	return rl
+	
+def get_class_data():
+	host = "http://eu.battle.net"
+	
+	try:
+		classes = JsonData.objects.get(description='classes')
+	except JsonData.DoesNotExist:
+		classes = None
+	
+	if classes is None or classes.date <= timezone.now() - datetime.timedelta(hours=12):
+		print "Updating classes in DB"	
+		
+		# Fetch class info from blizzard
+		url = host + "/api/wow/data/character/classes"
+		response = urllib2.urlopen(url).read()
+		
+		try:
+			old = JsonData.objects.get(description='classes')
+			old.delete()
+		except JsonData.DoesNotExist:
+			pass
+		jsonData = JsonData(description='classes', json=response)
+		jsonData.save()			
+	else:
+		print "Using existing classes from DB"
+		response = classes.json
+	
+	classdata = json.loads(response)
+	classes = classdata['classes']
+	cl = {}
+	
+	# Construct a dictionary to be able to lookup classes
+	for c in classes:
+		cl[c['id']] = c['name']
+	return cl
+	
+def get_member_data():
+	host = "http://eu.battle.net"
+	
+	# Check if we have recently updated data in DB
+	try:
+		members = JsonData.objects.get(description='members')
+	except JsonData.DoesNotExist:
+		members = None
+	print members
+	
+	# If we dont have an entry for members, or if its too old, fetch new data from blizzard
+	if members is None or members.date <= timezone.now() - datetime.timedelta(minutes=15):
+		# Fetch guild members
+		print "Updating members in DB"
+		url = host + "/api/wow/guild/" + REALM_URL + "/" + GUILD_NAME_URL + "?fields=members"
+		response = urllib2.urlopen(url).read()
+		
+		# Remove old entry if one exists
+		try:
+			old = JsonData.objects.get(description='members')
+			old.delete()
+		except JsonData.DoesNotExist:
+			pass
+		jsonData = JsonData(description='members', json=response)
+		jsonData.save()
+	else:
+		response = members.json
+		print "Using existing members from DB"
+	
+	guild = json.loads(response)
+	return guild['members']
+	# members = guild['members']
