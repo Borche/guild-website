@@ -10,7 +10,7 @@
 {% for a in articles %}
 	<hr>
 	<p>
-	<span style="font-size:20px;">{{ a.header }} - </span> <span style="font-weight:bold">{{ a.author }}</span> - <span style="font-size:12px;">{{ a.pub_date }} </span>
+	<span style="font-size:20px;">{{ a.header }} - </span> <span style="font-weight:bold">{{ a.author|title }}</span> - <span style="font-size:12px;">{{ a.pub_date|date:"F d, Y H:i" }} </span>
 	</p>
 	<p>
 	{{ a.text|linebreaksbr }}
@@ -21,7 +21,7 @@
 {% endfor %}
 
 {% else %}
-No articles yet!
+<p>No articles yet!</p>
 
 {% endif %}
 

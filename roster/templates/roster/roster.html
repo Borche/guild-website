@@ -2,12 +2,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<h3>Guild Roster</h3>
+<hr>
+
 {% if members %}
+	<table id="roster_table" border="0">
+		<tr style="font-weight: bold;" class="bb">
+			<td width="180px"><a href="{% url 'roster:roster' 'name' ord %}">Character</a></td>
+			<td><a href="{% url 'roster:roster' 'xclass' ord %}">Class</a></td>
+			<td><a href="{% url 'roster:roster' 'race' ord %}">Race</a></td>
+			<td><a href="{% url 'roster:roster' 'level' ord %}">Level</a></td>
+			<td><a href="{% url 'roster:roster' 'rank' ord %}">Rank</a></td>
+		</tr>
 	{% for m in members %}
-	{{	m.character.name }} <br>
+		<tr><td class="bold">{{ m.name }}</td><td>{{ m.xclass }}</td><td>{{ m.race }}</td><td>{{ m.level }}</td><td>{{ m.rank }}</td></tr>
 	{% endfor %}
+	</table>
 {% else %}
-There are no members in the guild yet.
+<p>There are no members in the guild yet.</p>
 {% endif %}
 
 {% endblock %}

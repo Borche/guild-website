@@ -9,5 +9,5 @@ from django.conf.urls import patterns, url
 from roster import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.members, name='members'),
+    url(r'^(?P<attr>\w+)/(?P<ord>\w+)/$', views.roster, name='roster'),
 )

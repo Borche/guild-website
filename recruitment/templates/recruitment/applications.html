@@ -6,6 +6,7 @@
 <h3>
 Applications
 </h3>
+<hr>
 
 <!-- Här hamnar man om man precis applyat -->
 {% if new %}
@@ -16,7 +17,7 @@ Applications
 
 <div id="applications">
     {% for a in applications %}
-    <h3><span class="bold">{{ a.character_name }}</span> {{ a.level }} {{ a.race }} <span class="{{ a.xclass|lower|cut:" " }}">{{ a.xclass }}</span> - <span style="font-size:10px;font-style:italic;">{{ a.date }}</span></h3>
+    <h3><span class="bold">{{ a.character_name }}</span> {{ a.level }} {{ a.race }} <span class="{{ a.xclass|lower|cut:" " }}">{{ a.xclass }}</span> - <span style="font-size:10px;font-style:italic;">{{ a.date|date:"F d, Y H:i" }}</span></h3>
     <div>
 		<h5>Contact info</h5>
 		<table class="bold">

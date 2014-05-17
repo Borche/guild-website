@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DATETIME_FORMAT = '%B %d, %Y, %H:%M:%S'
+
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
@@ -54,6 +56,7 @@ INSTALLED_APPS = (
 	'news',
 	'recruitment',
 	'captcha',
+	'account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,6 +75,7 @@ WSGI_APPLICATION = 'guild.wsgi.application'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+"django.core.context_processors.request",
 "django.core.context_processors.debug",
 "django.core.context_processors.i18n",
 "django.core.context_processors.media",
@@ -85,7 +89,7 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Stockholm'
 
 USE_I18N = True
 

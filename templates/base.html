@@ -14,6 +14,8 @@
 		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.4.custom.min.css' %}" />
 		
+		<link rel="shortcut icon" type="image/png" href="{{ STATIC_URL }}imgs/favicon.png" />
+		
 		<!-- Latest compiled and minified CSS -->
 		<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
 
@@ -44,6 +46,14 @@
                         position: [e.pageX-150, e.pageY]
                     }); 
                 });
+				
+				$('.login_input').keypress( function (e) {
+                    if (e.which == 13) {
+                        $('#login_form').submit();
+                        $('#login_div').dialog('close');
+                        return false;   // e.preventDefault and e.preventPropagation()
+                    }
+                });
 			});
 		</script>
 		
@@ -54,7 +64,10 @@
 		{% if user.is_authenticated %}
 		<span style="margin:0;padding:0;float:right;"><span style="font-style:italic;font-size:11px;">Logged in as {{ user|title }} </span><a href="{% url 'my_logout' %}" id="logout_button">Logout</a></span>
 		{% else %}
-		<a href="#" id="login_button" style="margin:0;padding:0;float:right;">Login</a>
+		<span style="margin:0;padding:0;float:right;">
+			<a href="{% url 'account:registration_page' %}" id="register_button">Register</a> | 
+			<a href="#" id="login_button">Login</a>
+		</span>
 		{% endif %}
 		
 		<div id="header" style="clear:both">
@@ -63,7 +76,12 @@
 		<div id="menu-1">
 			<ul>
 				<li><a href="{% url 'news:news' %}">Home</a></li>
-				<li><a href="#">About Deorum</a></li>
+				<li><a href="{% url 'about' %}">About Deorum</a>
+					<ul>
+						<li><a href="{% url 'about' %}">Guild Info</a></li>
+						<li><a href="{% url 'roster:roster' 'name' 'asc' %}">Roster</a></li>
+					</ul>
+				</li>
 				<li><a href="#">Member info</a></li>
 				<li>
 					<a href="{% url 'recruitment:status' %}">Recruitment</a>
@@ -76,7 +94,7 @@
 			</ul>
 		</div>
 		<div id="wrapper">
-			<div id="content">
+			<div id="content">			
 			{% block content %}BLOCK CONTENT{% endblock %}
 			</div>
 			<div id="footer">
@@ -90,8 +108,8 @@
             <form id="login_form" action="{% url 'my_login' %}" method="post">
                 {% csrf_token %}
                 <table>
-                    <tr><td>Username:</td><td><input id="id_username" name="username" type="text" max_length="30"></td></tr>
-                    <tr><td>Password:</td><td><input id="id_password" name="password" type="password" max_length="30"></td></tr>
+                    <tr><td>Username:</td><td><input id="id_username" class="login_input" name="username" type="text" max_length="30"></td></tr>
+                    <tr><td>Password:</td><td><input id="id_password" class="login_input" name="password" type="password" max_length="30"></td></tr>
                 </table>
             </form>
         </div>

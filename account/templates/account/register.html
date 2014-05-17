@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Register</h3>
+<hr>
+
+{% if error_message %}
+<p style="color:red;">
+{{ error_message }}
+</p>
+{% endif %}
+
+<form action="{% url 'account:register' %}" method="post" id="registration_form" autocomplete="off">
+	{% csrf_token %}
+	<table>
+		<!-- The row below functions as autocomplete="off" in Chrome -->
+		<input type="text" name="username" style="display:none;"/><input type="text" name="username" style="display:none;"/>
+		<!--<tr><td></td><td></td></tr>-->
+		<tr><td>Username: *</td><td><input type="text" name="username" placeholder="Username" title="At least three characters long." /></td></tr>
+		<tr><td>Password: *</td><td><input type="password" name="password" placeholder="Password" title="At least six characters long." /></td></tr>
+		<tr><td>Password again: *</td><td><input type="password" name="password_repeated" placeholder="Password again" title="The passwords must be identical." /></td></tr>
+		<tr><td>Email: *</td><td><input type="email" name="email" placeholder="Your email" /></td></tr>
+		<tr><td>Invitation code: *</td><td><input type="text" name="invitation_code" placeholder="Code" title="If you haven't been invited, you can't register an account." /></td></tr>
+		<tr><td></td><td><input type="submit" value="Register" id="submit_button" /></td></tr>
+	</table>
+</form>
+<p>
+Fields marked with an asterix (*) are required.
+</p>
+
+<script>
+	$(document).ready( function() {
+		$('#registration_form').attr("autocomplete", "off");
+		$('input').css('width', '160px');
+		$('#submit_button').css('width', '100px');
+		$('#submit_button').css('height', '30px');
+	});
+</script>
+
+{% endblock %}

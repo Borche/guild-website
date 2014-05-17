@@ -1,4 +1,8 @@
 
+html {
+	overflow-y: scroll;
+}
+
 body {
 	background: #eee url('../imgs/simple_dashed.png');
 	margin: 50px 0px; 
@@ -19,6 +23,10 @@ body {
 #wrapper {
 	/* border: 1px solid red; */
 	background:#171a21;
+	background: linear-gradient(#171a21, #04040a); /* For Safari */
+	background: -o-linear-gradient(#171a21, #04040a); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#171a21, #04040a); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#171a21, #04040a); /* Standard syntax (must be last) */
 	padding: 20px;
 	min-height: 100px;
 }
@@ -141,7 +149,7 @@ a, a:visited, a:active {
 }
 
 a:hover {
-	color: #b8e7ff;
+	color: #cac49e;
 	text-decoration: none;
 }
 
@@ -163,6 +171,20 @@ input, select, textarea {
 textarea {
 	width: 500px;
 	resize: none;
+}
+
+a.deo, a.deo:visited {
+	color: #a19150;
+	font-weight: bold;
+}
+
+a.deo:hover, a.deo:active {
+	font-weight: bold;
+	color: #9f956c;
+}
+
+.purple {
+	color: #8400ff;
 }
 
 hr {
@@ -225,6 +247,14 @@ hr {
     color: #C41F3B;
 }
 
+.trial {
+	
+}
+
+.guildmaster {
+	color: #
+}
+
 h3 {
 	margin-top: 9px;
 	margin-bottom: 9px;
@@ -244,6 +274,29 @@ h5 {
 	margin-bottom: 7px;
 	font-size:15px;
 	font-weight: normal;
+}
+
+#roster_table {
+	width: 100%;
+	padding: 0;
+	border:1px solid #0e1015;
+}
+
+#roster_table tr {
+	margin: 0;
+}
+
+#roster_table td {
+	border: none;
+	padding: 3px 10px 3px 10px;
+}
+
+#roster_table tr:nth-child(even) td {
+	background-color: #121419;
+}
+
+#roster_table tr:nth-child(odd) td {
+	background-color: #1f222b;
 }
 
 

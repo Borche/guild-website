@@ -18,6 +18,8 @@ urlpatterns = patterns('',
 	url(r'^recruitment/', include('recruitment.urls', namespace="recruitment")),
 	url(r'^captcha/', include('captcha.urls')), 
     url(r'^admin/', include(admin.site.urls)),
+	url(r'^account/', include('account.urls', namespace='account')),
 	url(r'^login/$', views.my_login, name='my_login'),
 	url(r'^logout/$', views.my_logout, name='my_logout'),
+	url(r'^about/$', views.about, name='about'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

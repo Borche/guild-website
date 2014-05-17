@@ -5,7 +5,6 @@ from django.contrib.auth import login, logout, authenticate
 from news import views
 
 def my_login(request):
-	print "in my_login"
 	if not request.POST.get('username', False):
 		raise Http404
 	if not request.POST.get('password', False):
@@ -18,8 +17,13 @@ def my_login(request):
 	
 	if user is not None:
 		login(request, user)
+	else:
+		return render(request, 'invalid_login.html')
 	return HttpResponseRedirect(reverse('news:news'))
 		
 def my_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('news:news'))
+	
+def about(request):
+	return render(request, 'about.html')

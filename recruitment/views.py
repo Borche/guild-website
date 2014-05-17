@@ -2,6 +2,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
+from django.utils.timezone import localtime
 
 from recruitment.models import Application
 from recruitment.forms import ApplicationForm
@@ -36,6 +37,7 @@ def applications(request):
 		for a in applications_list:
 			a.name = 'Login required'
 			a.email = 'Login required'
+			#a.date = localtime(a.date)
 	template = loader.get_template('recruitment/applications.html')
 	context = RequestContext(request, {
 		'applications': applications_list,
