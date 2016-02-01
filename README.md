@@ -1,3 +1,3 @@
-guild
+Guild Website
 =====
-Building a guild website for fun, just to learn some python and django..
+Playing around and building a guild website for fun, just to learn some python and django...
